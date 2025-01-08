@@ -157,6 +157,7 @@ export interface Props {
   enableUserSelectHack?: boolean;
   dragPositionOffset?: DraggableProps["positionOffset"];
   allowAnyClick?: boolean;
+  shouldChangeOffsetFromParent?: boolean;
   scale?: number;
   [key: string]: any;
 }
@@ -550,6 +551,7 @@ export class Rnd extends React.PureComponent<Props, State> {
   }
 
   updateOffsetFromParent() {
+    if (!this.props.shouldChangeOffsetFromParent) return;
     const scale = this.props.scale as number;
     const parent = this.getParent();
     const self = this.getSelfElement();
